@@ -16,7 +16,7 @@ body {
 }
 
 .main-container {
-  margin: 10% auto 0 auto;
+  margin: 5% auto 0 auto;
   position: relative;
   width: 50%;
   height: 50%;
@@ -25,12 +25,13 @@ body {
 }
 
 .carousel-pic{
-  max-width: 100%;
+  min-height: 100%;
   //border: 2px solid blue;
 }
 
 %arrow{
-  top: 40%;
+  //top: 40%;
+  top:25vw;
   position: absolute;
   font-size: 4em;
   color: #33373B;
@@ -41,11 +42,10 @@ body {
 
 .arrow-left{
   @extend %arrow;
-  left: -100px;
+  left: 15vw;
 }
 
 .arrow-right{
   @extend %arrow;
-  right: -100px;
-
+  right: 15vw;
 }
