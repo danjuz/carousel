@@ -12,40 +12,43 @@ body {
   color: #333;
   width: 100%;
   height: 100%;
-  //border: 2px solid blue;
 }
 
-.main-container {
+.pic-container {
   margin: 5% auto 0 auto;
   position: relative;
   width: 50%;
   height: 50%;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-  //border: 2px solid red;
+  border: 10vw solid black;
+}
+
+.main-container{
+  margin: 5% auto 5% auto;
+  width: 70%;
+  position: relative;
 }
 
 .carousel-pic{
-  min-height: 100%;
-  //border: 2px solid blue;
+  max-width: 100%;
 }
 
 %arrow{
-  //top: 40%;
-  top:25vw;
+  top: 40%;
   position: absolute;
-  font-size: 4em;
+  font-size: 4vw;
   color: #33373B;
   &:hover{
-    color: grey;
+    color: purple;
   }
 }
 
 .arrow-left{
   @extend %arrow;
-  left: 15vw;
+  left: 1vw;
 }
 
 .arrow-right{
   @extend %arrow;
-  right: 15vw;
+  right: 1vw;
 }

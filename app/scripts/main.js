@@ -10,16 +10,27 @@ var carouselImg = ["https://photos-1.dropbox.com/t/2/AACytEesAP-JlQbeiUa6vdCOU1U
 var carousel = {
 
   addPic: function(){
-    $('.main-container').append("<img src=" +  carouselImg[0] + " class='carousel-pic' />");
-    this.clickArrow();
-  },
-  clickArrow: function(){
-
+    $('.pic-container').append("<img src=" +  carouselImg[0] + " class='carousel-pic' />");
+    carousel.autoNext();
   },
 
   nextPic: function(theNum){
     console.log(theNum);
-    $('.main-container').html("<img src=" +  carouselImg[theNum] + " class='carousel-pic' />");
+    $('.pic-container').html("<img src=" +  carouselImg[theNum] + " class='carousel-pic' />");
+  },
+
+  autoNext: function(){
+
+    window.setInterval(function(){
+      count++;
+
+    if(count > (carouselImg.length - 1)){
+      count = 0;
+      carousel.nextPic(count);
+    } else{
+      carousel.nextPic(count);
+    }
+    }, 6000);
   }
 }
 
@@ -28,7 +39,7 @@ $( document ).ready(function() {
 });
 
 
-//Listener
+//Listeners
 $('.arrow-right').on('click',function(){
   count++;
 
