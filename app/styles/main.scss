@@ -1,54 +1,35 @@
-// bower:scss
-// endbower
-
 *{
-  padding: 0;
-  margin: 0;
+    padding: 0;
+    margin: 0;
 }
-
 body {
-  background: #fafafa;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  color: #333;
-  width: 100%;
-  height: 100%;
+    background: #ffffff;
+    font-family: 'verdana', Helvetica, Arial, sans-serif;
 }
-
-.pic-container {
-  margin: 5% auto 0 auto;
-  position: relative;
-  width: 50%;
-  height: 50%;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-  border: 10vw solid black;
+.carousel-wrapper {
+    width: 98%;
+    margin: 0 auto;
 }
-
-.main-container{
-  margin: 5% auto 5% auto;
-  width: 70%;
-  position: relative;
+.carousel-images {
+    img{
+        width: 100%;
+    }
 }
-
-.carousel-pic{
-  max-width: 100%;
-}
-
-%arrow{
-  top: 40%;
-  position: absolute;
-  font-size: 4vw;
-  color: #33373B;
-  &:hover{
-    color: purple;
-  }
-}
-
-.arrow-left{
-  @extend %arrow;
-  left: 1vw;
-}
-
-.arrow-right{
-  @extend %arrow;
-  right: 1vw;
+.carousel-bottom-choise{
+    border: 1px solid #A3A3A3;
+    text-align: center;
+    li{
+        display: inline-block;
+        font-size: 2.4vw;
+        font-weight: 800;
+        width: 23.4%;
+        padding: 8px 0;
+        &:hover{
+            color: #df0000 !important;
+            cursor: pointer;
+        }
+        &:nth-child(n+2){
+            border-left: 1px solid #A3A3A3;
+        }
+    }
 }

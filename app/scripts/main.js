@@ -1,63 +1,56 @@
-/* jshint devel:true */
-
-
-var count = 0;
-
-var carouselImg = ["https://photos-1.dropbox.com/t/2/AACytEesAP-JlQbeiUa6vdCOU1UETw3l13GcJ_WR-flOiw/12/8838851/png/32x32/1/_/1/2/Screenshot%202015-05-27%2013.56.20.png/CMO9mwQgASACKAEoAg/EJ0QWGjX6AEZNDs_NX0xFuQF6deeS-_bgEG4XhQNdNI?size=1024x768&size_mode=2",
-"https://photos-4.dropbox.com/t/2/AADpG8kud1RJVMY6WCJaJkWJfBMOPjLvnUeOra_WheVCog/12/8838851/png/32x32/1/_/1/2/Screenshot%202015-05-27%2013.56.55.png/CMO9mwQgASACKAEoAg/fgP_TCBDiQmrzKapdQ4T0edLtxv83jvdePAUFbuN3MU?size=1024x768&size_mode=2",
-"https://photos-4.dropbox.com/t/2/AACe0brx2MbSsVKg89syq2uZmZbZZz8paQYD3BtaqLZWPg/12/8838851/png/32x32/1/_/1/2/Screenshot%202015-05-27%2013.56.36.png/CMO9mwQgASACKAEoAg/2uPxF67esuMRfnwOVvnLVmih9PHoiX-ZXYFppxqR5eU?size=1024x768&size_mode=2"];
-
 var carousel = {
+    count: 0,
+    carouselImg: [
+        "http://proproshloe.ru/zhitelyam/sites/default/files/imagecache/slideshow_picture/0695_0.jpg",
+        "http://shopfinder.ccamstetten.at/backend/media/12.jpg",
+        "http://cdn.xgn.nl/upload/201510/xbox-one-najaarsbundels-1443799313.jpg",
+        "http://shopfinder.ccamstetten.at/backend/media/12.jpg"
+    ],
+    init: function(){
+        this.addPic();
+    },
+    addPic: function(){
+        $('.carousel-images').append("<img src=" +  this.carouselImg[0] + " class='carousel-pic' />");
+        $('li:nth-child(1)').css({"color": "#df0000", "background": "#F2F2F2"});
 
-  addPic: function(){
-    $('.pic-container').append("<img src=" +  carouselImg[0] + " class='carousel-pic' />");
-    carousel.autoNext();
-  },
+        this.autoNext();
+    },
+    autoNext: function(){
+        var self = this;
 
-  nextPic: function(theNum){
-    console.log(theNum);
-    $('.pic-container').html("<img src=" +  carouselImg[theNum] + " class='carousel-pic' />");
-  },
+        nIntervId = window.setInterval(function(){
+            self.count++;
 
-  autoNext: function(){
+            if(self.count > (self.carouselImg.length - 1)){
+                self.count = 0;
+                $("li:nth-child("+ self.carouselImg.length +")").css({"color": "black"});
+                self.nextPic(self.count);
+            } else{
+                self.nextPic(self.count);
+            }
+        }, 2000);
 
-    window.setInterval(function(){
-      count++;
+        $('ul li').click(function(){
+            self.stopInterval(nIntervId);
+            self.nextPic($(this).index());
+        });
+    },
+    showAndStop: function(index){
+        $('.carousel-images').html("<img src=" +  this.carouselImg[index] + " class='carousel-pic' />");
+        this.stopInterval();
+    },
+    nextPic: function(theNum){
+        titel = theNum + 1;
+        theNumBefore = titel - 1;
+        $('.carousel-images').html("<img src=" +  this.carouselImg[theNum] + " class='carousel-pic' />");
 
-    if(count > (carouselImg.length - 1)){
-      count = 0;
-      carousel.nextPic(count);
-    } else{
-      carousel.nextPic(count);
+        $("li").css({"color": "black", "background": "#ffffff"});
+        $("li:nth-child("+ titel +")").css({"color": "#df0000", "background": "#F2F2F2"});
+    },
+    stopInterval: function(nIntervId){
+        clearInterval(nIntervId);
     }
-    }, 6000);
-  }
 }
-
 $( document ).ready(function() {
-  carousel.addPic();
-});
-
-
-//Listeners
-$('.arrow-right').on('click',function(){
-  count++;
-
-if(count > (carouselImg.length - 1)){
-  count = 0;
-  carousel.nextPic(count);
-} else{
-  carousel.nextPic(count);
-}
-});
-
-$('.arrow-left').on('click',function(){
-  count--;
-
-  if(count <= -1){
-    count = 2;
-    carousel.nextPic(count);
-  } else{
-    carousel.nextPic(count);
-  }
+    carousel.init();
 });
