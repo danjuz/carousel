@@ -34,6 +34,12 @@ var carousel = {
             self.stopInterval(nIntervId);
             self.nextPic($(this).index());
         });
+        $(".carousel-images").hover(function(){
+            clearInterval(nIntervId);
+        });
+        $(".carousel-images").mouseout(function(){
+            self.autoNext();
+        });
     },
     showAndStop: function(index){
         $('.carousel-images').html("<img src=" +  this.carouselImg[index] + " class='carousel-pic' />");
@@ -51,6 +57,7 @@ var carousel = {
         clearInterval(nIntervId);
     }
 }
+
 $( document ).ready(function() {
     carousel.init();
 });
